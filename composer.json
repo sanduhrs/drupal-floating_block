@@ -1,0 +1,14 @@
+{
+  "name": "drupal/floating_block",
+  "type": "drupal-module",
+  "description": "Allows regions of the site to float.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "http://drupal.org/project/floating_block",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/floating_block",
+    "source": "http://cgit.drupalcode.org/floating_block"
+  },
+  "require": { }
+}
