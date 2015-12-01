@@ -18,6 +18,13 @@ class SettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
+  protected function getEditableConfigNames() {
+    return array();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getFormID() {
     return 'floating_block_admin_settings_form';
   }
@@ -57,7 +64,7 @@ class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
-    $this->configFactory->get('floating_block.settings')
+    $this->configFactory->getEditable('floating_block.settings')
       ->set('blocks', _floating_block_admin_convert_text_to_array($values['blocks']))
       ->save();
   }

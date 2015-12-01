@@ -20,7 +20,7 @@
   Drupal.behaviors.floating_block = {
     attach: function (context, settings) {
 
-      var settings = settings.floating_block;
+      var settings = settings.floatingBlock.blocks;
 
       // This breaks in anything less than IE 7. Prevent it from running.
       //if ($.browser.msie && parseInt($.browser.version, 10) < 7) {
@@ -34,7 +34,6 @@
 
       // Cycle through all of the blocks we want to float.
       $.each(settings, function (selector, setting) {
-        console.log(setting);
 
         // The format of a select is [float]|[container] where:
         // [float] is the jQuery selector of thing you want to stay on screen

@@ -9,18 +9,13 @@
 /**
  * Implements hook_page_attachments();
  */
-function floating_block_page_attachments(array &$page) {
+function floating_block_page_attachments(array &$attachments) {
   $floating_blocks = \Drupal::config('floating_block.settings')->get('blocks');
 
   // Only load the javascript if floating blocks have been configured.
   if (count($floating_blocks)) {
-    $page['#attached']['js'][drupal_get_path('module', 'floating_block') . '/floating_block.js'] = [];
-    $page['#attached']['js'][] = [
-      'type' => 'setting',
-      'data' => [
-        'floating_block' => $floating_blocks
-      ],
-    ];
+    $attachments['#attached']['library'][] = 'floating_block/floating_block';
+    $attachments['#attached']['drupalSettings']['floatingBlock']['blocks'] = $floating_blocks;
   }
 }
 
@@ -97,24 +92,6 @@ function _floating_block_admin_convert_array_to_text($floating_blocks) {
     $output[] = $output_line;
   }
   return implode("\n", $output);
-}
-
-/**
- * Implements hook_page_build().
- */
-function floating_block_page_build(&$page) {
-  $config_factory = \Drupal::service('config.factory');
-  $settings = $config_factory->get('floating_block.settings')->get('floating_blocks');
-  if ($settings) {
-    drupal_set_message(print_r($settings, TRUE));
-    $page['#attached']['library'][] = array('floating_block', 'floating_block');
-    $page['#attached']['js'][] = array(
-      'type' => 'setting',
-      'data' => array(
-        'floating_block' => $settings
-      ),
-    );
-  }
 }
 
 /**
